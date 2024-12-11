@@ -175,6 +175,49 @@
             animation: loading 1s infinite;
         }
 
+        .note-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .note-title {
+            margin: 0 0 12px 0;
+            color: #1a73e8;
+            font-weight: 500;
+        }
+        
+        .note-list {
+            margin: 0 0 12px 0;
+            padding-left: 20px;
+        }
+        
+        .note-list li {
+            margin-bottom: 8px;
+        }
+        
+        .note-warning {
+            color: #d93025;
+            margin: 12px 0;
+        }
+        
+        .note-download {
+            margin: 12px 0 8px 0;
+            font-weight: 500;
+        }
+        
+        .note-list a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+        
+        .note-list a:hover {
+            text-decoration: underline;
+        }
+
         @keyframes loading {
             0% { opacity: 0.2; }
             50% { opacity: 1; }
@@ -201,7 +244,21 @@
                 <input type="text" id="duration" name="duration" required 
                        placeholder="Nhập thời gian rèn luyện">
             </div>
-
+            <div class="note-box">
+                <p class="note-title">Bạn cần bổ sung hình ảnh để Ban tổ chức có căn cứ chấm điểm</p>
+                <ul class="note-list">
+                    <li>Ảnh bắt đầu và kết thúc tập luyện (Bắt buộc)</li>
+                    <li>Ảnh chụp kết quả vận động đo bằng các phần mềm</li>
+                </ul>
+                
+                <p class="note-warning">Lưu ý: Ảnh bắt đầu và kết thúc tập luyện cần phải có thông số Ngày giờ tập luyện chèn trên ảnh (Có thể cài đặt phần mềm Timestamp)</p>
+                
+                <p class="note-download">Link download dành cho App Timestamp:</p>
+                <ul class="note-list">
+                    <li><a href="https://play.google.com/store/apps/details?id=com.jeyluta.timestampcamerafree" target="_blank">Điện thoại Android</a></li>
+                    <li><a href="https://apps.apple.com/us/app/timestamp-camera-basic/id840110184" target="_blank">Điện thoại Apple</a></li>
+                </ul>
+            </div>
             <div class="form-group">
                 <label class="required">Ảnh bắt đầu rèn luyện</label>
                 <div class="file-input-container">
