@@ -433,3 +433,84 @@
                     if (!file || file.size === 0) return null;
                     
                     return new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            const userName = formData.get('name').replace(/\s+/g, '_');
+                            resolve({
+                                name: fieldName,
+                                data: e.target.result.split(',')[1],
+                                fileName: `${userName}_${fieldName}_${new Date().getTime()}`
+                            });
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                });
+
+                const images = await Promise.all(imagePromises);
+                
+                const data = {
+                    name: formData.get('name'),
+                    trainingDate: formData.get('trainingDate'),
+                    duration: formData.get('duration'),
+                    notes: formData.get('notes'),
+                    startImage: images[0]?.data,
+                    endImage: images[1]?.data,
+                    resultImage: images[2]?.data,
+                    fileNames: {
+                        startImage: images[0]?.fileName,
+                        endImage: images[1]?.fileName,
+                        resultImage: images[2]?.fileName
+                    }
+                };
+
+                const response = await fetch('https://script.google.com/macros/s/AKfycbwqsDVOMJ02bohioKMG0raOgiL86KdbLrid5cClWk7BfHr75E1QV-hr11YvkwCEgG0y/exec', {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    mode: 'no-cors'
+                });
+
+                status.textContent = 'Gửi báo cáo thành công!';
+                status.classList.add('success');
+                form.reset();
+                
+                document.querySelectorAll('.preview-image').forEach(img => {
+                    img.style.display = 'none';
+                    img.nextElementSibling.style.display = 'none';
+                });
+                
+                const today = new Date();
+                document.getElementById('trainingDate').value = 
+                    `2024-12-${today.getDate().toString().padStart(2, '0')}`;
+                
+            } catch (error) {
+                status.textContent = 'Có lỗi xảy ra. Vui lòng thử lại!';
+                status.classList.add('error');
+                console.error('Error:', error);
+            } finally {
+                loading.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        }
+    </script>
+
+<script>
+    function updateIframeHeight() {
+        const height = document.body.scrollHeight;
+        window.parent.postMessage({
+            'type': 'resize',
+            'height': height
+        }, '*');
+    }
+
+    // Cập nhật chiều cao khi trang tải xong
+    window.addEventListener('load', updateIframeHeight);
+    
+    // Cập nhật chiều cao khi có thay đổi về nội dung (ví dụ: hiển thị ảnh preview)
+    const observer = new MutationObserver(updateIframeHeight);
+    observer.observe(document.body, { 
+        childList: true, 
+        subtree: true 
+    });
+</script>
+</body>
+</html>
