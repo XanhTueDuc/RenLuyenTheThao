@@ -373,25 +373,5 @@
             }
         }
     </script>
-
-<script>
-    function updateIframeHeight() {
-        const height = document.body.scrollHeight;
-        window.parent.postMessage({
-            'type': 'resize',
-            'height': height
-        }, '*');
-    }
-
-    // Cập nhật chiều cao khi trang tải xong
-    window.addEventListener('load', updateIframeHeight);
-    
-    // Cập nhật chiều cao khi có thay đổi về nội dung (ví dụ: hiển thị ảnh preview)
-    const observer = new MutationObserver(updateIframeHeight);
-    observer.observe(document.body, { 
-        childList: true, 
-        subtree: true 
-    });
-</script>
 </body>
 </html>
