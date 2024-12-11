@@ -230,7 +230,7 @@
         <h2>Báo Cáo Rèn Luyện Hàng Ngày</h2>
         <form id="uploadForm" onsubmit="return handleSubmit(event)">
             <div class="form-group">
-                <label for="name" class="required">Họ tên người tham gia</label>
+                <label for="name" class="required">Họ tên Người tham gia hoặc Mã học sinh  (Có thể là CB-GV hoặc Học sinh)</label>
                 <input type="text" id="name" name="name" required autocomplete="name">
             </div>
 
@@ -240,9 +240,9 @@
             </div>
 
             <div class="form-group">
-                <label for="duration" class="required">Thời gian rèn luyện</label>
+                <label for="duration" class="required">Thời gian rèn luyện (phút) hoặc Quãng đường (km)</label>
                 <input type="text" id="duration" name="duration" required 
-                       placeholder="Nhập thời gian rèn luyện">
+                       placeholder="Ghi rõ đơn vị phút hoặc km">
             </div>
             <div class="note-box">
                 <p class="note-title">Bạn cần bổ sung hình ảnh để Ban tổ chức có căn cứ chấm điểm</p>
@@ -262,7 +262,7 @@
             <div class="form-group">
                 <label class="required">Ảnh bắt đầu rèn luyện</label>
                 <div class="file-input-container">
-                    <div class="file-input-label">Chọn ảnh bắt đầu</div>
+                    <div class="file-input-label">Chọn ảnh đã chụp</div>
                     <input type="file" id="startImage" name="startImage" 
                            accept="image/*"
                            onchange="previewImage(event, 'previewStart')" required>
@@ -277,7 +277,7 @@
             <div class="form-group">
                 <label class="required">Ảnh kết thúc rèn luyện</label>
                 <div class="file-input-container">
-                    <div class="file-input-label">Chọn ảnh kết thúc</div>
+                    <div class="file-input-label">Chọn ảnh đã chụp</div>
                     <input type="file" id="endImage" name="endImage" 
                            accept="image/*"
                            onchange="previewImage(event, 'previewEnd')" required>
@@ -290,9 +290,9 @@
             </div>
 
             <div class="form-group">
-                <label>Ảnh kết quả (không bắt buộc)</label>
+                <label>Ảnh kết quả ghi nhận bằng các phần mềm (không bắt buộc)</label>
                 <div class="file-input-container">
-                    <div class="file-input-label">Chọn ảnh kết quả</div>
+                    <div class="file-input-label">Chọn ảnh đã chụp</div>
                     <input type="file" id="resultImage" name="resultImage" 
                            accept="image/*"
                            onchange="previewImage(event, 'previewResult')">
@@ -309,7 +309,7 @@
                 <textarea id="notes" name="notes" rows="3"></textarea>
             </div>
 
-            <div id="loading" class="loading">Đang gửi báo cáo...</div>
+            <div id="loading" class="loading">Đang gửi báo cáo, vui lòng chờ...</div>
             <div id="status" class="status"></div>
             <button type="submit">Gửi Báo Cáo</button>
         </form>
