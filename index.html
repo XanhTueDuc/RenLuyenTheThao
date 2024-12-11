@@ -447,11 +447,15 @@
                 });
 
                 const images = await Promise.all(imagePromises);
+                const formData = new FormData(form);
+                const unit = formData.get('unit');
+                const resultValue = formData.get('duration');
                 
                 const data = {
                     name: formData.get('name'),
                     trainingDate: formData.get('trainingDate'),
-                    duration: formData.get('duration'),
+                    duration: resultValue,
+                    unit: unit,
                     notes: formData.get('notes'),
                     startImage: images[0]?.data,
                     endImage: images[1]?.data,
