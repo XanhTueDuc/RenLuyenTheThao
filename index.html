@@ -70,6 +70,97 @@
             padding-right: 8px;
         }
 
+        .result-input-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .result-input-group input[type="number"] {
+            flex: 1;
+            -moz-appearance: textfield;
+        }
+
+        .result-input-group input[type="number"]::-webkit-outer-spin-button,
+        .result-input-group input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .unit-selector {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 8px;
+            padding: 2px;
+        }
+
+        .unit-label {
+            position: relative;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .unit-label input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .unit-text {
+            display: block;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .unit-label input[type="radio"]:checked + .unit-text {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .note-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .note-title {
+            margin: 0 0 12px 0;
+            color: #1a73e8;
+            font-weight: 500;
+        }
+
+        .note-list {
+            margin: 0 0 12px 0;
+            padding-left: 20px;
+        }
+
+        .note-list li {
+            margin-bottom: 8px;
+        }
+
+        .note-warning {
+            color: #d93025;
+            margin: 12px 0;
+        }
+
+        .note-download {
+            margin: 12px 0 8px 0;
+            font-weight: 500;
+        }
+
+        .note-list a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .note-list a:hover {
+            text-decoration: underline;
+        }
+
         .file-input-container {
             position: relative;
             margin-bottom: 8px;
@@ -175,49 +266,6 @@
             animation: loading 1s infinite;
         }
 
-        .note-box {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-
-        .note-title {
-            margin: 0 0 12px 0;
-            color: #1a73e8;
-            font-weight: 500;
-        }
-        
-        .note-list {
-            margin: 0 0 12px 0;
-            padding-left: 20px;
-        }
-        
-        .note-list li {
-            margin-bottom: 8px;
-        }
-        
-        .note-warning {
-            color: #d93025;
-            margin: 12px 0;
-        }
-        
-        .note-download {
-            margin: 12px 0 8px 0;
-            font-weight: 500;
-        }
-        
-        .note-list a {
-            color: #1a73e8;
-            text-decoration: none;
-        }
-        
-        .note-list a:hover {
-            text-decoration: underline;
-        }
-
         @keyframes loading {
             0% { opacity: 0.2; }
             50% { opacity: 1; }
@@ -230,7 +278,7 @@
         <h2>Báo Cáo Rèn Luyện Hàng Ngày</h2>
         <form id="uploadForm" onsubmit="return handleSubmit(event)">
             <div class="form-group">
-                <label for="name" class="required">Họ tên Người tham gia hoặc Mã học sinh  (Có thể là CB-GV hoặc Học sinh)</label>
+                <label for="name" class="required">Họ tên Người tham gia hoặc Mã học sinh (Có thể là CB-GV hoặc Học sinh)</label>
                 <input type="text" id="name" name="name" required autocomplete="name">
             </div>
 
@@ -240,10 +288,23 @@
             </div>
 
             <div class="form-group">
-                <label for="duration" class="required">Thời gian rèn luyện (phút) hoặc Quãng đường (km)</label>
-                <input type="text" id="duration" name="duration" required 
-                       placeholder="Ghi rõ đơn vị phút hoặc km">
+                <label for="duration" class="required">Kết quả rèn luyện</label>
+                <div class="result-input-group">
+                    <input type="number" id="duration" name="duration" required 
+                           placeholder="Nhập kết quả" min="0" step="any">
+                    <div class="unit-selector">
+                        <label class="unit-label">
+                            <input type="radio" name="unit" value="min" checked>
+                            <span class="unit-text">Phút</span>
+                        </label>
+                        <label class="unit-label">
+                            <input type="radio" name="unit" value="km">
+                            <span class="unit-text">Km</span>
+                        </label>
+                    </div>
+                </div>
             </div>
+
             <div class="note-box">
                 <p class="note-title">Bạn cần bổ sung hình ảnh để Ban tổ chức có căn cứ chấm điểm</p>
                 <ul class="note-list">
@@ -259,6 +320,7 @@
                     <li><a href="https://apps.apple.com/us/app/timestamp-camera-basic/id840110184" target="_blank">Điện thoại Apple</a></li>
                 </ul>
             </div>
+
             <div class="form-group">
                 <label class="required">Ảnh bắt đầu rèn luyện</label>
                 <div class="file-input-container">
@@ -290,7 +352,7 @@
             </div>
 
             <div class="form-group">
-                <label>Ảnh kết quả ghi nhận bằng các phần mềm (không bắt buộc)</label>
+                <label>Ảnh kết quả ghi nhận bằng Phần mềm (không bắt buộc)</label>
                 <div class="file-input-container">
                     <div class="file-input-label">Chọn ảnh đã chụp</div>
                     <input type="file" id="resultImage" name="resultImage" 
@@ -371,64 +433,3 @@
                     if (!file || file.size === 0) return null;
                     
                     return new Promise((resolve) => {
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            const userName = formData.get('name').replace(/\s+/g, '_');
-                            resolve({
-                                name: fieldName,
-                                data: e.target.result.split(',')[1],
-                                fileName: `${userName}_${fieldName}_${new Date().getTime()}`
-                            });
-                        };
-                        reader.readAsDataURL(file);
-                    });
-                });
-
-                const images = await Promise.all(imagePromises);
-                
-                const data = {
-                    name: formData.get('name'),
-                    trainingDate: formData.get('trainingDate'),
-                    duration: formData.get('duration'),
-                    notes: formData.get('notes'),
-                    startImage: images[0]?.data,
-                    endImage: images[1]?.data,
-                    resultImage: images[2]?.data,
-                    fileNames: {
-                        startImage: images[0]?.fileName,
-                        endImage: images[1]?.fileName,
-                        resultImage: images[2]?.fileName
-                    }
-                };
-
-                const response = await fetch('https://script.google.com/macros/s/AKfycbwqsDVOMJ02bohioKMG0raOgiL86KdbLrid5cClWk7BfHr75E1QV-hr11YvkwCEgG0y/exec', {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    mode: 'no-cors'
-                });
-
-                status.textContent = 'Gửi báo cáo thành công!';
-                status.classList.add('success');
-                form.reset();
-                
-                document.querySelectorAll('.preview-image').forEach(img => {
-                    img.style.display = 'none';
-                    img.nextElementSibling.style.display = 'none';
-                });
-                
-                const today = new Date();
-                document.getElementById('trainingDate').value = 
-                    `2024-12-${today.getDate().toString().padStart(2, '0')}`;
-                
-            } catch (error) {
-                status.textContent = 'Có lỗi xảy ra. Vui lòng thử lại!';
-                status.classList.add('error');
-                console.error('Error:', error);
-            } finally {
-                loading.style.display = 'none';
-                submitBtn.disabled = false;
-            }
-        }
-    </script>
-</body>
-</html>
