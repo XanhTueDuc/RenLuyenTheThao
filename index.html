@@ -380,12 +380,12 @@
     <script>
         window.onload = function() {
             const today = new Date();
-            const defaultDate = `2024-12-${today.getDate().toString().padStart(2, '0')}`;
+            const defaultDate = `2025-01-${today.getDate().toString().padStart(2, '0')}`;
             
             const dateInput = document.getElementById('trainingDate');
             dateInput.value = defaultDate;
-            dateInput.min = '2024-12-11';
-            dateInput.max = '2024-12-31';
+            dateInput.min = '2025-01-10';
+            dateInput.max = '2025-01-31';
         }
 
         function previewImage(event, previewId) {
@@ -481,7 +481,7 @@
                 
                 const today = new Date();
                 document.getElementById('trainingDate').value = 
-                    `2024-12-${today.getDate().toString().padStart(2, '0')}`;
+                    `2025-01-${today.getDate().toString().padStart(2, '0')}`;
                 
             } catch (error) {
                 status.textContent = 'Có lỗi xảy ra. Vui lòng thử lại!';
